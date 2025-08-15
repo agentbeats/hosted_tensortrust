@@ -5,7 +5,13 @@
 1. Compose
 
 ```bash
-docker compose up -d --build
+# Linux/macOS
+HOST_AGENT_PORT=12345 HOST_LAUNCHER_PORT=12346 docker compose up
+```
+
+```powershell
+# Windows PowerShell  
+$env:HOST_AGENT_PORT=12345; $env:HOST_LAUNCHER_PORT=12346; docker compose up
 ```
 
 2. Check success
@@ -54,3 +60,10 @@ agent/
 └─ scenario.toml
 └─ agent_card.toml
 ```
+
+## For developers
+
+We assume the following.
+
+Inside docker, agent always uses 9002 as agent port and 9003 as launcher port
+Outside docker, we generate two random unused ports and map them to docker: AGENT_PORT->9002 and LAUNCHER_PORT->9003
