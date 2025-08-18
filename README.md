@@ -3,8 +3,8 @@
 ## Upload this docker (for agentbeats use)
 
 ```bash
-docker build -t simonxie2004/tensortrust:v1.0.0 .
-docker push simonxie2004/tensortrust:v1.0.0
+docker build -t simonxie2004/tensortrust:latest .
+docker push simonxie2004/tensortrust:latest
 ```
 
 Local test (using `docker run`)
@@ -20,7 +20,7 @@ docker run -d \
   -p 9001:9001 \
   -v ./agent:/workspace/agent \
   -v ./requirements.txt:/workspace/requirements.txt:ro \
-  simonxie2004/tensortrust:v1.0.0
+  simonxie2004/tensortrust:latest
 ```
 
 ```powershell
@@ -34,7 +34,7 @@ docker run -d `
   -p 9001:9001 `
   -v .\agent:/workspace/agent `
   -v .\requirements.txt:/workspace/requirements.txt:ro `
-  simonxie2004/tensortrust:v1.0.0
+  simonxie2004/tensortrust:latest
 ```
 
 ## Easier method (for your local testing)

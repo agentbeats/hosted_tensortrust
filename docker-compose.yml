@@ -3,7 +3,7 @@ services:
     build:
       context: . 
       dockerfile: Dockerfile
-    image: simonxie2004/tensortrust:v1.0.0
+    image: simonxie2004/tensortrust:latest
 
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
