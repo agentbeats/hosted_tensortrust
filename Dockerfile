@@ -23,8 +23,7 @@ COPY --from=builder /usr/local /usr/local
 COPY entrypoint.sh /workspace/entrypoint.sh
 RUN dos2unix /workspace/entrypoint.sh && chmod +x /workspace/entrypoint.sh
 
-ENV SCENARIO_ROOT=/workspace \
-    PYTHONUNBUFFERED=1 
+ENV PYTHONUNBUFFERED=1 
 
 # TODO: not considering health check now
 # HEALTHCHECK --interval=30s  \

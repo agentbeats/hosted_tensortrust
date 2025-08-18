@@ -3,31 +3,30 @@ services:
     build:
       context: . 
       dockerfile: Dockerfile
-    image: agentbeats/tensortrust:v1.0.0
+    image: simonxie2004/tensortrust:v1.0.0
 
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
-      - SCENARIO_ROOT=/workspace
-      - AGENT_PORT=9002 # container port for agent
-      - LAUNCHER_PORT=9003 # container port for launcher
+      - LAUNCHER_PORT=9002 # container port for launcher
+      - AGENT_PORT=9003 # container port for agent
 
     extra_hosts:
       - "host.docker.internal:host-gateway" # to let linux systems work; don't affect windows/macOS
 
     ports:
       # Dynamic port mapping for agent and launcher (no defaults - must be provided)
-      - "${HOST_AGENT_PORT}:9002" # host port -> container port
-      - "${HOST_LAUNCHER_PORT}:9003" # host port -> container port
+      - "${HOST_LAUNCHER_PORT}:9002" # host port -> container port
+      - "${HOST_AGENT_PORT}:9003" # host port -> container port
       # Backend ports (fixed)
       - "9000:9000" # backend
       - "9001:9001" # backend mcp
 
-    # only mount scenario and requirements;
+    # only mount agent and requirements;
     # IMPORTANT NOTE: entrypoint.sh will be copied into container 
     # (through Dockerfile) instead of mounted, since it will be replaced 
     # CRLF->LF in the container, which shouldn't affect the host
     volumes:
-      - ./scenario:/workspace/scenario
+      - ./agent:/workspace/agent
       - ./requirements.txt:/workspace/requirements.txt:ro
 
     # TODO: not considering healthcheck for now

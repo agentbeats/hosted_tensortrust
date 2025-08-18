@@ -1,6 +1,43 @@
 # [TensorTrust] Hosted Scenario
 
-## Using this docker
+## Upload this docker (for agentbeats use)
+
+```bash
+docker build -t simonxie2004/tensortrust:v1.0.0 .
+docker push simonxie2004/tensortrust:v1.0.0
+```
+
+Local test (using `docker run`)
+
+```bash
+export HOST_LAUNCHER_PORT=12345
+export HOST_AGENT_PORT=12346
+docker run -d \
+  -e OPENAI_API_KEY=${OPENAI_API_KEY} \
+  -p ${HOST_LAUNCHER_PORT}:9002 \
+  -p ${HOST_AGENT_PORT}:9003 \
+  -p 9000:9000 \
+  -p 9001:9001 \
+  -v ./agent:/workspace/agent \
+  -v ./requirements.txt:/workspace/requirements.txt:ro \
+  simonxie2004/tensortrust:v1.0.0
+```
+
+```powershell
+$env:HOST_LAUNCHER_PORT=12345
+$env:HOST_AGENT_PORT=12346
+docker run -d `
+  -e OPENAI_API_KEY=$env:OPENAI_API_KEY `
+  -p ${env:HOST_LAUNCHER_PORT}:9002 `
+  -p ${env:HOST_AGENT_PORT}:9003 `
+  -p 9000:9000 `
+  -p 9001:9001 `
+  -v .\agent:/workspace/agent `
+  -v .\requirements.txt:/workspace/requirements.txt:ro `
+  simonxie2004/tensortrust:v1.0.0
+```
+
+## Easier method (for your local testing)
 
 1. Compose
 
